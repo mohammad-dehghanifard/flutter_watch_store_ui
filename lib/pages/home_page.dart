@@ -1,13 +1,29 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_watch_store_ui/models/fake_data.dart';
+import 'package:flutter_watch_store_ui/widgets/nav_bar_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int selectedIndex = 0;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF7F9FC),
+      bottomNavigationBar:  NavBarWidget(
+        selected: selectedIndex,
+        onChange: (pageIndex) {
+          setState(() {
+            selectedIndex = pageIndex;
+          });
+        },
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
